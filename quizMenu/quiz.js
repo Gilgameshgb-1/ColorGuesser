@@ -253,13 +253,19 @@ leaveButton.addEventListener("click", function () {
 function endQuiz() {
   optionsContainer.innerHTML = "";
   colorBox.style.backgroundColor = "";
-  const message =
-    score === totalQuestions
-      ? "Congratulations! You got all the questions right!"
-      : "Good job! Your quiz is now complete.";
-  colorBox.textContent = message;
   scoreDisplay.textContent = `Final Score: ${score}/${totalQuestions}`;
   leaveButton.style.display = "block";
+
+  const popupContainer = document.getElementById("popup-container");
+  const popupMessage = document.getElementById("popup-message");
+  const closePopupButton = document.getElementById("close-popup");
+
+  popupMessage.textContent = `Your score: ${score}/${totalQuestions}`;
+  popupContainer.style.display = "flex";
+
+  closePopupButton.addEventListener("click", () => {
+    popupContainer.style.display = "none";
+  });
 }
 
 // Main flow starts here
