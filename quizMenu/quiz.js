@@ -151,12 +151,17 @@ const colors = [
 
 console.log(colors); // Check the list of colors in the browser console.
 
+const mode = new URLSearchParams(window.location.search).get("mode");
+
 const colorBox = document.getElementById("color-box");
 const optionsContainer = document.getElementById("options");
 const scoreDisplay = document.getElementById("score");
+const progressDisplay = document.getElementById("progress");
 const leaveButton = document.getElementById("leave-button");
 
 let score = 0;
+let currentQuestion = 0;
+const totalQuestions = 10;
 let currentColorIndex = 0;
 
 function generateRandomIncorrectColorIndex(excludeIndex) {
@@ -214,13 +219,24 @@ function checkAnswer(chosenColor) {
   if (chosenColor === currentColor) {
     score++;
   }
+  currentQuestion++;
   currentColorIndex = (currentColorIndex + 1) % colors.length; // Cycle through colors
   updateScoreDisplay();
+  if (mode === "ten-questions") {
+    updateProgressDisplay();
+    if (currentQuestion == totalQuestions) {
+      endQuiz();
+    }
+  }
   nextQuestion();
 }
 
 function updateScoreDisplay() {
   scoreDisplay.textContent = `Score: ${score}`;
+}
+
+function updateProgressDisplay() {
+  progressDisplay.textContent = `Question: ${currentQuestion}/${totalQuestions}`;
 }
 
 function nextQuestion() {
@@ -231,18 +247,32 @@ function nextQuestion() {
 }
 
 leaveButton.addEventListener("click", function () {
-  window.location.href = "index.html";
+  window.location.href = "../mainMenu/index.html";
 });
 
+function endQuiz() {
+  optionsContainer.innerHTML = "";
+  colorBox.style.backgroundColor = "";
+  const message =
+    score === totalQuestions
+      ? "Congratulations! You got all the questions right!"
+      : "Good job! Your quiz is now complete.";
+  colorBox.textContent = message;
+  scoreDisplay.textContent = `Final Score: ${score}/${totalQuestions}`;
+  leaveButton.style.display = "block";
+}
+
 // Main flow starts here
-const mode = new URLSearchParams(window.location.search).get("mode");
 if (mode === "endless") {
   console.log("Endless mode active");
+  progressDisplay.style.display = "none";
   updateColorBox(colors[currentColorIndex]); // Show the initial color
   nextQuestion(); // Start the quiz in endless mode
   updateOptions(generateOptions()); // Generate and show initial options
 } else if (mode === "ten-questions") {
-  // Implement the 10 Questions Mode functionality if needed
+  updateColorBox(colors[Math.floor(Math.random() * colors.length)]);
+  nextQuestion();
+  updateOptions(generateOptions());
 } else {
   // Invalid mode, redirect back to the main page
   window.location.href = "index.html";
