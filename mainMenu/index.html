@@ -7,11 +7,36 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="main-container">
-      <h1>Color Guessing Quiz</h1>
-      <div class="mode-selection">
-        <button id="endless-mode">Endless Mode</button>
-        <button id="ten-questions-mode">10 Questions Mode</button>
+    <div class="logo-container">
+      <!-- Replace "your-logo.svg" with the path to your SVG logo -->
+      <img class="logo" src="../assets/CGuessr Logo.svg" alt="Logo" />
+    </div>
+    <h1 class="sentence">Train your eye and master the colors.</h1>
+    <div class="options-container">
+      <!-- Add your options here -->
+      <button class="option more-info">More Info</button>
+      <button class="option login">Login</button>
+      <button class="option play" id="play-button">Play!</button>
+    </div>
+
+    <!-- Hidden modal (popup) -->
+    <div class="modal" id="playModal">
+      <div class="modal-content">
+        <h2>Choose your GameMode:</h2>
+        <button id="tenQuestions">10 Questions</button>
+        <button id="endlessMode">Endless</button>
+        <button id="closeModal" class="close-button">Close</button>
+      </div>
+    </div>
+
+    <div class="bottom-container">
+      <div class="bottom-logo">
+        <!-- Replace "your-bottom-logo.svg" with the path to your bottom logo -->
+        <img src="../assets/BBureau Logo.svg" alt="Bottom Logo" />
+      </div>
+      <div class="bottom-text">
+        <!-- Add your text for the bottom right section -->
+        Made by Black Bureau 2023
       </div>
     </div>
     <script src="main.js"></script>
