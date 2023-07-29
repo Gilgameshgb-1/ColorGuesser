@@ -1,14 +1,17 @@
-const canvas = document.getElementById("myCanvas");
-const ctx = canvas.getContext("2d");
+jQuery(document).ready(function () {
+  var mouseX = 0,
+    mouseY = 0;
+  var xp = 0,
+    yp = 0;
 
-function drawRect(fillColor) {
-  ctx.fillStyle = fillColor;
-  ctx.fillRect(0, 0, 100, 100);
-}
+  $(document).mousemove(function (e) {
+    mouseX = e.pageX - 30;
+    mouseY = e.pageY - 30;
+  });
 
-drawRect("blue"); // Initial fill color
-
-// Change the fill color dynamically
-setTimeout(() => {
-  drawRect("red");
-}, 2000); // Change to red after 2 seconds
+  setInterval(function () {
+    xp += (mouseX - xp) / 6;
+    yp += (mouseY - yp) / 6;
+    $("#circle").css({ left: xp + "px", top: yp + "px" });
+  }, 20);
+});
