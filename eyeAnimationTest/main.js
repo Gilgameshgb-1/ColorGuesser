@@ -9,9 +9,25 @@ jQuery(document).ready(function () {
     mouseY = e.pageY - 30;
   });
 
+  function clamp(value, min, max) {
+    return Math.min(Math.max(value, min), max);
+  }
+
   setInterval(function () {
-    xp += (mouseX - xp) / 6;
-    yp += (mouseY - yp) / 6;
+    var xMin = 810,
+      xMax = 1110,
+      yMin = 177,
+      yMax = 325;
+
+    var divisor = 40;
+
+    xp += (mouseX - xp) / divisor;
+    yp += (mouseY - yp) / divisor;
+
+    // Limit the position to stay within the given rectangle
+    xp = clamp(xp, xMin, xMax);
+    yp = clamp(yp, yMin, yMax);
+
     $("#circle").css({ left: xp + "px", top: yp + "px" });
   }, 20);
 });
