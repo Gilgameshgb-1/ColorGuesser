@@ -14,10 +14,10 @@ jQuery(document).ready(function () {
   }
 
   setInterval(function () {
-    var xMin = 810,
-      xMax = 1110,
-      yMin = 177,
-      yMax = 325;
+    var xMin = 623,
+      xMax = 887,
+      yMin = 164,
+      yMax = 295;
 
     var divisor = 40;
 

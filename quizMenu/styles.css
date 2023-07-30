@@ -1,8 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@800&display=swap");
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Manrope", sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f0f0f0;
+}
+
+.navbar {
+  background-color: #fbfbfb; /* Change the background color as desired */
+  color: rgb(0, 0, 0); /* Change the text color as desired */
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 4px;
+  border-bottom: 2px solid #ccc; /* Add a gray line at the bottom */
+}
+
+.navbar-left {
+  flex: 1;
+}
+
+.hamburger-button {
+  font-size: 22px;
+  color: rgb(0, 0, 0);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.hamburger-button:hover {
+  background-color: #555; /* Change the hover background color as desired */
+  color: #fff; /* Change the hover text color as desired */
+  transform: scale(0.7); /* Reduce the size by 10% on hover */
+}
+
+.navbar-logo {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar-logo img {
+  height: 25px; /* Adjust the height of the logo as needed */
+}
+
+.navbar-right {
+  flex: 1;
+  text-align: right;
+}
+
+.bold-text {
+  padding-right: 20px;
+  font-weight: 800;
+  font-size: 18px; /* Adjust the font size as needed */
 }
 
 .quiz-container {
@@ -114,4 +165,22 @@ button:hover {
 
 #close-popup:hover {
   background-color: #0056b3;
+}
+
+.circle {
+  position: absolute;
+  height: 15%;
+  width: 15%;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.bgRetina {
+  position: absolute;
+  height: 35%;
+  width: 70%;
+  top: 22.8%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

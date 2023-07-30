@@ -153,7 +153,7 @@ console.log(colors); // Check the list of colors in the browser console.
 
 const mode = new URLSearchParams(window.location.search).get("mode");
 
-const colorBox = document.getElementById("color-box");
+const colorBox = document.getElementById("bgRetina");
 const optionsContainer = document.getElementById("options");
 const scoreDisplay = document.getElementById("score");
 const progressDisplay = document.getElementById("progress");
@@ -200,7 +200,12 @@ function shuffleArray(array) {
 }
 
 function updateColorBox(color) {
-  colorBox.style.backgroundColor = color.value;
+  const newColor = color.value;
+  const blackPath = document.querySelector("#bgRetina path:not(.cls-1)");
+  blackPath.style.fill = newColor;
+
+  const circleElement = document.getElementById("circle");
+  circleElement.style.fill = newColor;
 }
 
 function updateOptions(options) {
@@ -267,6 +272,40 @@ function endQuiz() {
     popupContainer.style.display = "none";
   });
 }
+
+jQuery(document).ready(function () {
+  var mouseX = 0,
+    mouseY = 0;
+  var xp = 0,
+    yp = 0;
+
+  $(document).mousemove(function (e) {
+    mouseX = e.pageX - 30;
+    mouseY = e.pageY - 30;
+  });
+
+  function clamp(value, min, max) {
+    return Math.min(Math.max(value, min), max);
+  }
+
+  setInterval(function () {
+    var xMin = 823,
+      xMax = 1087,
+      yMin = 164,
+      yMax = 280;
+
+    var divisor = 40;
+
+    xp += (mouseX - xp) / divisor;
+    yp += (mouseY - yp) / divisor;
+
+    // Limit the position to stay within the given rectangle
+    xp = clamp(xp, xMin, xMax);
+    yp = clamp(yp, yMin, yMax);
+
+    $("#circle").css({ left: xp + "px", top: yp + "px" });
+  }, 20);
+});
 
 // Main flow starts here
 if (mode === "endless") {

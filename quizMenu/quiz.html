@@ -7,9 +7,52 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <nav class="navbar">
+      <div class="navbar-left">
+        <button class="hamburger-button">&#9776;</button>
+      </div>
+      <div class="navbar-logo">
+        <!-- Replace 'your-logo.svg' with the path to your SVG logo -->
+        <img src="../assets/CGuessr_Logo.svg" alt="ColorGuessr Logo" />
+      </div>
+      <div class="navbar-right">
+        <span class="bold-text">ColorGuessr</span>
+      </div>
+    </nav>
+    <svg
+      id="bgRetina"
+      class="bgRetina"
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1302.06 506.96"
+    >
+      <defs>
+        <style>
+          .cls-1 {
+            fill: #e6e6e6;
+          }
+        </style>
+      </defs>
+      <path d="M0,0C0,236.33,291.47,507,651,507s651-270.63,651-507Z" />
+      <path
+        class="cls-1"
+        d="M870.22,328.55C832.54,360.5,791.88,388,746.79,408.5c-30.61,13.89-62.29,23.82-111,23.69-14.77,0-42.5-7.71-69.33-18.91-50-20.85-94.59-50.46-135.65-85.42-21.25-18.11-22-48.12-1.08-66.12,44.81-38.64,93.86-70.63,149.5-91.94,53.41-20.47,105.6-16.87,157.51,5.37,50.12,21.48,94.79,51.52,136.17,86.55,20.76,17.58,19.31,48.19-2.66,66.83Z"
+      />
+    </svg>
+    <svg
+      id="circle"
+      class="circle"
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 215.59 215.62"
+    >
+      <path
+        d="M215.59,108.61c-.17,59.84-48.53,107.44-108.7,107A107.62,107.62,0,0,1,0,108C0,48.57,48.76-.16,108.2,0,167.88.15,215.74,48.57,215.59,108.61Z"
+      />
+    </svg>
     <div class="quiz-container">
       <h1>Color Guessing Quiz</h1>
-      <div id="color-box"></div>
+      <!--       <div id="color-box"></div> -->
       <div id="options"></div>
       <div id="score">Score: 0</div>
       <div id="progress">Question: 0/10</div>
@@ -22,6 +65,7 @@
         <button id="close-popup">Close</button>
       </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="quiz.js"></script>
   </body>
 </html>
