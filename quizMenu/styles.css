@@ -108,14 +108,21 @@ button:hover {
 
 #options {
   display: flex;
+  flex-direction: column; /* Add this line to make the options display vertically */
   flex-wrap: wrap;
   justify-content: center;
   max-width: 600px;
+  padding-top: 10%;
+}
+
+.option-container {
+  margin-bottom: 1px; /* Add some spacing between options */
 }
 
 .option-button {
+  display: block; /* Display the buttons as block elements */
+  width: 100%; /* Make the buttons fill the container's width */
   padding: 10px 20px;
-  margin: 5px;
   font-size: 16px;
   background-color: #007bff;
   color: #fff;

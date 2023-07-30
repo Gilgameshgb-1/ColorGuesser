@@ -209,13 +209,18 @@ function updateColorBox(color) {
 }
 
 function updateOptions(options) {
-  optionsContainer.innerHTML = "";
+  optionsContainer.innerHTML = ""; // Clear the container before adding options
   options.forEach((option, index) => {
+    const optionContainer = document.createElement("div"); // Create a container for each option
+    optionContainer.classList.add("option-container"); // Add a class to the container (optional)
+
     const button = document.createElement("button");
     button.textContent = option;
     button.classList.add("option-button");
     button.addEventListener("click", () => checkAnswer(option));
-    optionsContainer.appendChild(button);
+
+    optionContainer.appendChild(button); // Add the button to the option container
+    optionsContainer.appendChild(optionContainer); // Add the option container to the options container
   });
 }
 
@@ -290,11 +295,11 @@ jQuery(document).ready(function () {
 
   setInterval(function () {
     var xMin = 823,
-      xMax = 1087,
+      xMax = 1080,
       yMin = 164,
       yMax = 280;
 
-    var divisor = 40;
+    var divisor = 15;
 
     xp += (mouseX - xp) / divisor;
     yp += (mouseY - yp) / divisor;
