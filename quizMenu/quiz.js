@@ -178,13 +178,21 @@ function generateOptions() {
   const correctColor = colors[correctColorIndex].name;
   options.push(correctColor);
 
+  const usedIndices = new Set(); // Store used indices to avoid duplicates
+
   while (options.length < 4) {
-    const randomIncorrectColorIndex =
-      generateRandomIncorrectColorIndex(correctColorIndex);
+    let randomIncorrectColorIndex;
+    do {
+      randomIncorrectColorIndex = Math.floor(Math.random() * colors.length);
+    } while (
+      randomIncorrectColorIndex === correctColorIndex ||
+      usedIndices.has(randomIncorrectColorIndex)
+    );
+
+    usedIndices.add(randomIncorrectColorIndex);
+
     const randomIncorrectColor = colors[randomIncorrectColorIndex].name;
-    if (!options.includes(randomIncorrectColor)) {
-      options.push(randomIncorrectColor);
-    }
+    options.push(randomIncorrectColor);
   }
 
   console.log("Generated Options:", options); // Log the generated options to the console
@@ -225,7 +233,7 @@ function checkAnswer(chosenColor) {
     score++;
   }
   currentQuestion++;
-  currentColorIndex = (currentColorIndex + 1) % colors.length; // Cycle through colors
+  currentColorIndex = Math.floor(Math.random() * colors.length); // Cycle through colors randomly (no protection yet)
   updateScoreDisplay();
   if (mode === "ten-questions") {
     updateProgressDisplay();
@@ -291,8 +299,8 @@ jQuery(document).ready(function () {
   setInterval(function () {
     var xMin = 823,
       xMax = 1087,
-      yMin = 164,
-      yMax = 280;
+      yMin = 200,
+      yMax = 380;
 
     var divisor = 40;
 
