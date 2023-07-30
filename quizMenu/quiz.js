@@ -162,7 +162,7 @@ const leaveButton = document.getElementById("leave-button");
 let score = 0;
 let currentQuestion = 0;
 const totalQuestions = 10;
-let currentColorIndex = 0;
+let currentColorIndex = Math.floor(Math.random() * colors.length);
 
 function generateRandomIncorrectColorIndex(excludeIndex) {
   let randomIndex;
