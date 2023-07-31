@@ -216,7 +216,7 @@ button:hover {
 .bgRetina {
   position: absolute;
   height: 50%;
-  width: 100%;
+  width: 65%;
   top: 30.3%;
   left: 50%;
   transform: translate(-50%, -50%);
