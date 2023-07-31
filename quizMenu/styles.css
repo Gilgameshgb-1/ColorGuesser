@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@800&display=swap");
 
 body {
-  font-family: "Manrope", sans-serif;
+  font-family: Manrope, sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f0f0f0;
@@ -98,31 +98,67 @@ button:hover {
 }
 
 #progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -80px;
   font-size: 18px;
-  margin-bottom: 10px;
+  margin-bottom: 40px;
 }
 
-#leave-button {
+.arrow-button {
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  background-color: #f0f0f0;
+  color: rgba(30, 30, 30, 255);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#prevButton {
+  margin-right: 80px;
+}
+
+#nextButton {
+  margin-left: 80px;
+}
+
+/* #leave-button {
   margin-top: 20px;
   background-color: #dc3545;
-}
+} */
 
 #options {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: 600px;
+  max-width: 1200px;
 }
 
 .option-button {
-  padding: 10px 20px;
+  width: 250px;
+  height: 50px;
+  padding: 15px 30px;
   margin: 5px;
   font-size: 16px;
-  background-color: #007bff;
+  background-color: rgba(30, 30, 30, 255);
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.option-number {
+  padding-right: 10px;
+  color: #fff;
+  font-weight: bold;
 }
 
 .option-button:hover {
@@ -184,4 +220,38 @@ button:hover {
   top: 30.3%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.line {
+  width: 8%;
+  height: 2px;
+  background-color: darkgray;
+  margin-top: 55px;
+  border: none;
+}
+
+.bottom-container {
+  /* Add your changes to move the bottom logo to the bottom of the screen */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px; /* Adjust the value to set the spacing from the bottom */
+}
+
+.bottom-logo {
+  /* Adjust the width and height based on your logo size */
+  width: 75px;
+  height: 75px;
+  /* Add any additional styles for the bottom logo */
+}
+
+.bottom-text {
+  /* Add any additional styles for the bottom text */
+  font-weight: normal;
+  margin-left: 10px;
+  margin-bottom: 45px;
 }
