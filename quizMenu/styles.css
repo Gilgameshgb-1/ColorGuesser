@@ -255,3 +255,98 @@ button:hover {
   margin-left: 10px;
   margin-bottom: 45px;
 }
+
+/* Your existing CSS styles for the navbar */
+/* ... */
+
+/* Styles for the sidebar */
+.sidebar {
+  position: fixed;
+  top: 50px;
+  left: -350px; /* Initially hidden to the left */
+  width: 350px;
+  height: 100%;
+  background-color: #f0f0f0;
+  border-right: 2px solid #ccc; /* Add a border to the right side */
+  padding: 20px;
+  box-sizing: border-box;
+  transition: left 0.3s ease; /* Transition when changing the left property */
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.sidebar li a {
+  color: #333;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.sidebar li a:hover {
+  text-decoration: underline;
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+.sidebar hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 5px 0;
+}
+
+.sidebar .sidebar-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: rgba(30, 30, 30, 255);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.sidebar-buttons {
+  position: absolute;
+  bottom: 100px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar-button:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+/* Show the sidebar when it's active */
+.sidebar.active {
+  left: 0;
+}
+
+.navLogo {
+  width: 100px;
+  height: 100px;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+}
+
+.small-text {
+  font-size: 12px;
+  font-weight: lighter;
+  margin-top: 4px;
+  color: #666; /* Adjust the color as needed */
+}

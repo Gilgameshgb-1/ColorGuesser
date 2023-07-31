@@ -902,3 +902,24 @@ if (mode === "endless") {
   // Invalid mode, redirect back to the main page
   window.location.href = "index.html";
 }
+
+const registerButton = document.getElementById("registerButton");
+const logInButton = document.getElementById("logInButton");
+
+function registerUser() {
+  window.location.href = "../mainMenu/index.html";
+}
+
+function logInUser() {
+  window.location.href = "../mainMenu/index.html";
+}
+
+registerButton.addEventListener("click", registerUser);
+logInButton.addEventListener("click", logInUser);
+
+//This has to be at the bottom, synchronicity issue?
+// Toggle the sidebar when the hamburger button is clicked
+document.querySelector(".hamburger-button").addEventListener("click", () => {
+  const sidebar = document.getElementById("sidebar");
+  sidebar.classList.toggle("active");
+});
