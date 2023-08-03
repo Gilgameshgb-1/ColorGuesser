@@ -5,16 +5,16 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  /* height: 100vh; */
   font-family: Manrope, sans-serif;
 }
 
 .logo-container {
   /* Adjust the width and height based on your logo size */
-  width: 150px;
-  height: 150px;
-  margin-right: 80px;
-  margin-bottom: 20px;
+  width: 12%;
+  height: 12%;
+  margin-right: 10%;
+  margin-top: 20%;
   /* Add any additional styles for the logo container */
 }
 
@@ -28,14 +28,14 @@ body {
 .sentence {
   /* Add any additional styles for the sentence */
   text-align: center;
-  margin-top: 20px;
+  margin-top: 2%;
   font-family: sans-serif;
   font-weight: normal;
 }
 
 .mode-selection {
   /* Add any additional styles for the mode selection */
-  margin-top: 40px;
+  margin-top: 10%;
 }
 
 .mode-selection button {
