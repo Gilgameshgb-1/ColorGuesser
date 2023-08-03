@@ -905,6 +905,7 @@ if (mode === "endless") {
 
 const registerButton = document.getElementById("registerButton");
 const logInButton = document.getElementById("logInButton");
+const closeButton = document.getElementById("closeButton");
 
 function registerUser() {
   window.location.href = "../mainMenu/index.html";
@@ -914,8 +915,14 @@ function logInUser() {
   window.location.href = "../mainMenu/index.html";
 }
 
+function closeSideBar() {
+  const sidebar = document.getElementById("sidebar");
+  sidebar.classList.toggle("active");
+}
+
 registerButton.addEventListener("click", registerUser);
 logInButton.addEventListener("click", logInUser);
+closeButton.addEventListener("click", closeSideBar);
 
 //This has to be at the bottom, synchronicity issue?
 // Toggle the sidebar when the hamburger button is clicked

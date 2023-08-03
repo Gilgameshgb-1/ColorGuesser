@@ -20,9 +20,10 @@
       </div>
     </nav>
     <div class="sidebar" id="sidebar">
-      <!--       <div class="navLogo">
+      <button class="close-button" id="closeButton">&times;</button>
+      <div class="navLogo">
         <img src="../assets/BBureau Logo.svg" alt="Bottom Logo" />
-      </div> -->
+      </div>
       <div>
         <ul>
           <li>
@@ -52,7 +53,6 @@
       </div>
 
       <div class="sidebar-buttons">
-        <input type="checkbox" id="hardMode" />
         <button class="sidebar-button" id="registerButton">Register</button>
         <button class="sidebar-button" id="logInButton">Sign In</button>
       </div>
@@ -118,29 +118,6 @@
         <button id="close-popup">Close</button>
       </div>
     </div>
-    <script>
-      // Get the checkboxes for hard mode and dark theme
-      const hardModeCheckbox = document.getElementById("hardMode");
-      const darkThemeCheckbox = document.getElementById("darkTheme");
-
-      // Function to handle hard mode checkbox change event
-      function handleHardModeChange(event) {
-        const hardModeEnabled = event.target.checked;
-        // Add your logic to handle hard mode here
-        console.log(`Hard Mode: ${hardModeEnabled}`);
-      }
-
-      // Function to handle dark theme checkbox change event
-      function handleDarkThemeChange(event) {
-        const darkThemeEnabled = event.target.checked;
-        // Add your logic to handle dark theme here
-        console.log(`Dark Theme: ${darkThemeEnabled}`);
-      }
-
-      // Add event listeners to the checkboxes
-      hardModeCheckbox.addEventListener("change", handleHardModeChange);
-      darkThemeCheckbox.addEventListener("change", handleDarkThemeChange);
-    </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="quiz.js"></script>
   </body>
