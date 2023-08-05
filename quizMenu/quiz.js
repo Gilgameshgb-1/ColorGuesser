@@ -816,6 +816,10 @@ function updateOptions(options) {
     }
     button.addEventListener("click", () => handleOptionClick(button, option));
     optionsContainer.appendChild(button);
+
+    requestAnimationFrame(() => {
+      button.classList.add("fade-in");
+    });
   });
 }
 

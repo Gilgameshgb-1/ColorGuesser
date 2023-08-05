@@ -156,6 +156,12 @@ button:hover {
   cursor: pointer;
   display: flex;
   align-items: center;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.option-button.fade-in {
+  opacity: 1;
 }
 
 .option-number {
@@ -393,4 +399,19 @@ button:hover {
   background-color: rgba(30, 30, 30, 255);
   color: #fff;
   cursor: default;
+}
+
+/* CSS for fade-out animation */
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.3s ease-out; /* Adjust the duration and easing as needed */
+}
+
+/* CSS for fade-in animation */
+.fade-in {
+  -webkit-transition: opacity 2s ease-in-out;
+  -moz-transition: opacity 2s ease-in-out;
+  -ms-transition: opacity 2s ease-in-out;
+  -o-transition: opacity 2s ease-in-out;
+  transition: opacity 1 ease-in-out;
 }
