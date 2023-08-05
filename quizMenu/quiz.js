@@ -737,6 +737,7 @@ let currentQuestionProgress = 1;
 let currentQuestion = 1;
 const totalQuestions = 10;
 let arrayOfCorrectAnswers = [];
+let userCorrectAnswers = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 let currentColorIndex = Math.floor(Math.random() * colors.length);
 
 function generateRandomIncorrectColorIndex(excludeIndex) {
@@ -747,13 +748,15 @@ function generateRandomIncorrectColorIndex(excludeIndex) {
   return randomIndex;
 }
 
+const optionsHistory = [];
+
 function generateOptions() {
   const options = [];
   const correctColorIndex = currentColorIndex;
   const correctColor = colors[correctColorIndex].name;
-  options.push(correctColor);
+  options.push([correctColor, "1"]);
   arrayOfCorrectAnswers.push(correctColor);
-  console.log(arrayOfCorrectAnswers);
+  //console.log(arrayOfCorrectAnswers);
 
   const usedIndices = new Set(); // Store used indices to avoid duplicates
 
@@ -769,9 +772,12 @@ function generateOptions() {
     usedIndices.add(randomIncorrectColorIndex);
 
     const randomIncorrectColor = colors[randomIncorrectColorIndex].name;
-    options.push(randomIncorrectColor);
+    options.push([randomIncorrectColor, "0"]);
   }
-  return shuffleArray(options);
+  const retArray = shuffleArray(options);
+  optionsHistory.push(retArray);
+
+  return retArray;
 }
 
 function shuffleArray(array) {
@@ -793,13 +799,21 @@ function updateColorBox(color) {
 }
 
 function updateOptions(options) {
+  console.log(options);
   optionsContainer.innerHTML = "";
   options.forEach((option, index) => {
     const button = document.createElement("button");
-    button.innerHTML = `<span class="option-number">${
-      index + 1
-    }.</span> ${option}`;
+    button.innerHTML = `<span class="option-number">${index + 1}.</span> ${
+      option[0]
+    }`;
     button.classList.add("option-button");
+    if (currentQuestion != currentQuestionProgress) {
+      if (option[1] === "1") {
+        button.classList.add("correct");
+      } else {
+        button.classList.add("completed");
+      }
+    }
     button.addEventListener("click", () => handleOptionClick(button, option));
     optionsContainer.appendChild(button);
   });
@@ -822,7 +836,7 @@ function handleOptionClick(button, option) {
 
       // Update the selectedButton and selectedOption variables
       selectedButton = button;
-      selectedOption = option;
+      selectedOption = option[0];
     } else {
       // If the user clicked on the same button again, treat it as the second click
       checkAnswer(selectedOption);
@@ -835,6 +849,7 @@ function handleOptionClick(button, option) {
 function checkAnswer(chosenColor) {
   const currentColor = colors[currentColorIndex].name;
   if (chosenColor === currentColor) {
+    userCorrectAnswers[currentQuestion] = 1;
     score++;
   }
   currentQuestionProgress++;
@@ -950,7 +965,11 @@ function goToNextQuestion() {
     const updatedColor =
       colorsByName[arrayOfCorrectAnswers[currentQuestion - 1]];
     updateColorBox(updatedColor);
+    /*     if (currentQuestionProgress !== currentQuestion) {
+      document.getElementById("option-button").classList.add("completed");
+    } */
     updateProgressDisplay();
+    updateOptions(optionsHistory[currentQuestion - 1]);
   }
 }
 
@@ -961,7 +980,11 @@ function goToPreviousQuestion() {
     const updatedColor =
       colorsByName[arrayOfCorrectAnswers[currentQuestion - 1]];
     updateColorBox(updatedColor);
+    /*     if (currentQuestionProgress !== currentQuestion) {
+      document.getElementById("option-button").classList.add("completed");
+    } */
     updateProgressDisplay();
+    updateOptions(optionsHistory[currentQuestion - 1]);
   }
 }
 

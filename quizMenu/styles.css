@@ -373,3 +373,24 @@ button:hover {
   background-color: #666;
   color: #fff;
 }
+
+.option-button.correct {
+  background-color: #69ea60bd; /* Green background for correct answer */
+  color: #fff; /* White text color */
+}
+/* Add this CSS class to style the correct answer on hover */
+.option-button.correct:hover {
+  background-color: #0b6a0b67; /* Darker green background on hover */
+  color: #fff; /* White text color on hover */
+  cursor: default;
+}
+.option-button.completed {
+  background-color: rgba(30, 30, 30, 255);
+  color: #fff;
+}
+
+.option-button.completed:hover {
+  background-color: rgba(30, 30, 30, 255);
+  color: #fff;
+  cursor: default;
+}
