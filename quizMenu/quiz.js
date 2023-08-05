@@ -717,7 +717,11 @@ const colors = [
   },
 ];
 
-console.log(colors); // Check the list of colors in the browser console.
+const colorsByName = colors.reduce((acc, color) => {
+  acc[color.name] = color;
+  return acc;
+}, {});
+//(colors); // Check the list of colors in the browser console.
 
 const mode = new URLSearchParams(window.location.search).get("mode");
 
@@ -726,11 +730,15 @@ const optionsContainer = document.getElementById("options");
 const scoreDisplay = document.getElementById("score");
 const progressDisplay = document.getElementById("progressDisplay");
 const hexColorDisplay = document.getElementById("hexNumber");
+const prevArrowButton = document.getElementById("prevButton");
+const nextArrowButton = document.getElementById("nextButton");
 /* const leaveButton = document.getElementById("leave-button"); */
 
 let score = 0;
-let currentQuestion = 0;
+let currentQuestionProgress = 1;
+let currentQuestion = 1;
 const totalQuestions = 10;
+let arrayOfCorrectAnswers = [];
 let currentColorIndex = Math.floor(Math.random() * colors.length);
 
 function generateRandomIncorrectColorIndex(excludeIndex) {
@@ -746,6 +754,8 @@ function generateOptions() {
   const correctColorIndex = currentColorIndex;
   const correctColor = colors[correctColorIndex].name;
   options.push(correctColor);
+  arrayOfCorrectAnswers.push(correctColor);
+  console.log(arrayOfCorrectAnswers);
 
   const usedIndices = new Set(); // Store used indices to avoid duplicates
 
@@ -764,7 +774,7 @@ function generateOptions() {
     options.push(randomIncorrectColor);
   }
 
-  console.log("Generated Options:", options); // Log the generated options to the console
+  //console.log("Generated Options:", options); // Log the generated options to the console
   return shuffleArray(options);
 }
 
@@ -803,24 +813,26 @@ let selectedButton = null;
 let selectedOption = null;
 
 function handleOptionClick(button, option) {
-  if (selectedButton !== button) {
-    // If the user clicked on a different button than the previously selected one
-    // Remove the 'selected' class from the previous selected button, if any
-    if (selectedButton) {
-      selectedButton.classList.remove("selected");
+  if (currentQuestion === currentQuestionProgress) {
+    if (selectedButton !== button) {
+      // If the user clicked on a different button than the previously selected one
+      // Remove the 'selected' class from the previous selected button, if any
+      if (selectedButton) {
+        selectedButton.classList.remove("selected");
+      }
+
+      // Add the 'selected' class to the newly clicked button
+      button.classList.add("selected");
+
+      // Update the selectedButton and selectedOption variables
+      selectedButton = button;
+      selectedOption = option;
+    } else {
+      // If the user clicked on the same button again, treat it as the second click
+      checkAnswer(selectedOption);
+      selectedButton = null;
+      selectedOption = null;
     }
-
-    // Add the 'selected' class to the newly clicked button
-    button.classList.add("selected");
-
-    // Update the selectedButton and selectedOption variables
-    selectedButton = button;
-    selectedOption = option;
-  } else {
-    // If the user clicked on the same button again, treat it as the second click
-    checkAnswer(selectedOption);
-    selectedButton = null;
-    selectedOption = null;
   }
 }
 
@@ -829,12 +841,13 @@ function checkAnswer(chosenColor) {
   if (chosenColor === currentColor) {
     score++;
   }
+  currentQuestionProgress++;
   currentQuestion++;
   currentColorIndex = Math.floor(Math.random() * colors.length); // Cycle through colors randomly (no protection yet)
   /*   updateScoreDisplay(); */
   if (mode === "ten-questions") {
     updateProgressDisplay();
-    if (currentQuestion == totalQuestions) {
+    if (currentQuestionProgress == totalQuestions) {
       endQuiz();
     }
   }
@@ -914,14 +927,14 @@ jQuery(document).ready(function () {
 
 // Main flow starts here
 if (mode === "endless") {
-  console.log("Endless mode active");
+  //console.log("Endless mode active");
   progressDisplay.style.display = "none";
   updateColorBox(colors[currentColorIndex]); // Show the initial color
   nextQuestion(); // Start the quiz in endless mode
   updateOptions(generateOptions()); // Generate and show initial options
 } else if (mode === "ten-questions") {
-  updateColorBox(colors[Math.floor(Math.random() * colors.length)]);
-  nextQuestion();
+  updateColorBox(colors[currentColorIndex]);
+  //nextQuestion();
   updateOptions(generateOptions());
 } else {
   // Invalid mode, redirect back to the main page
@@ -945,9 +958,36 @@ function closeSideBar() {
   sidebar.classList.toggle("active");
 }
 
+function goToNextQuestion() {
+  if (currentQuestion < currentQuestionProgress) {
+    currentQuestion++;
+    const updatedColor =
+      colorsByName[arrayOfCorrectAnswers[currentQuestion - 1]];
+    updateColorBox(updatedColor);
+    // Call a function here to update the question and options based on the currentQuestion index
+    // For example: updateQuestion(currentQuestion);
+    updateProgressDisplay();
+  }
+}
+
+// Function to go to the previous question
+function goToPreviousQuestion() {
+  if (currentQuestion > 1) {
+    currentQuestion--;
+    const updatedColor =
+      colorsByName[arrayOfCorrectAnswers[currentQuestion - 1]];
+    updateColorBox(updatedColor);
+    // Call a function here to update the question and options based on the currentQuestion index
+    // For example: updateQuestion(currentQuestion);
+    updateProgressDisplay();
+  }
+}
+
 registerButton.addEventListener("click", registerUser);
 logInButton.addEventListener("click", logInUser);
 closeButton.addEventListener("click", closeSideBar);
+prevArrowButton.addEventListener("click", goToPreviousQuestion);
+nextArrowButton.addEventListener("click", goToNextQuestion);
 
 //This has to be at the bottom, synchronicity issue?
 // Toggle the sidebar when the hamburger button is clicked
