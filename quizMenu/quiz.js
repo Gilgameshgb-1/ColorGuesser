@@ -794,9 +794,34 @@ function updateOptions(options) {
       index + 1
     }.</span> ${option}`;
     button.classList.add("option-button");
-    button.addEventListener("click", () => checkAnswer(option));
+    button.addEventListener("click", () => handleOptionClick(button, option));
     optionsContainer.appendChild(button);
   });
+}
+
+let selectedButton = null;
+let selectedOption = null;
+
+function handleOptionClick(button, option) {
+  if (selectedButton !== button) {
+    // If the user clicked on a different button than the previously selected one
+    // Remove the 'selected' class from the previous selected button, if any
+    if (selectedButton) {
+      selectedButton.classList.remove("selected");
+    }
+
+    // Add the 'selected' class to the newly clicked button
+    button.classList.add("selected");
+
+    // Update the selectedButton and selectedOption variables
+    selectedButton = button;
+    selectedOption = option;
+  } else {
+    // If the user clicked on the same button again, treat it as the second click
+    checkAnswer(selectedOption);
+    selectedButton = null;
+    selectedOption = null;
+  }
 }
 
 function checkAnswer(chosenColor) {

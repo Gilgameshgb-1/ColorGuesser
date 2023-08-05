@@ -367,3 +367,9 @@ button:hover {
   margin-top: 4px;
   color: #666; /* Adjust the color as needed */
 }
+
+/* Add this CSS class for the selected option */
+.option-button.selected {
+  background-color: #666;
+  color: #fff;
+}
