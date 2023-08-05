@@ -721,7 +721,6 @@ const colorsByName = colors.reduce((acc, color) => {
   acc[color.name] = color;
   return acc;
 }, {});
-//(colors); // Check the list of colors in the browser console.
 
 const mode = new URLSearchParams(window.location.search).get("mode");
 
@@ -732,7 +731,6 @@ const progressDisplay = document.getElementById("progressDisplay");
 const hexColorDisplay = document.getElementById("hexNumber");
 const prevArrowButton = document.getElementById("prevButton");
 const nextArrowButton = document.getElementById("nextButton");
-/* const leaveButton = document.getElementById("leave-button"); */
 
 let score = 0;
 let currentQuestionProgress = 1;
@@ -773,8 +771,6 @@ function generateOptions() {
     const randomIncorrectColor = colors[randomIncorrectColorIndex].name;
     options.push(randomIncorrectColor);
   }
-
-  //console.log("Generated Options:", options); // Log the generated options to the console
   return shuffleArray(options);
 }
 
@@ -844,7 +840,6 @@ function checkAnswer(chosenColor) {
   currentQuestionProgress++;
   currentQuestion++;
   currentColorIndex = Math.floor(Math.random() * colors.length); // Cycle through colors randomly (no protection yet)
-  /*   updateScoreDisplay(); */
   if (mode === "ten-questions") {
     updateProgressDisplay();
     if (currentQuestionProgress == totalQuestions) {
@@ -853,10 +848,6 @@ function checkAnswer(chosenColor) {
   }
   nextQuestion();
 }
-
-/* function updateScoreDisplay() {
-  scoreDisplay.textContent = `Score: ${score}`;
-} */
 
 function updateProgressDisplay() {
   progressDisplay.textContent = `${currentQuestion}/${totalQuestions}`;
@@ -868,10 +859,6 @@ function nextQuestion() {
   const currentColor = colors[currentColorIndex];
   updateColorBox(currentColor);
 }
-
-/* leaveButton.addEventListener("click", function () {
-  window.location.href = "../mainMenu/index.html";
-}); */
 
 function endQuiz() {
   optionsContainer.innerHTML = "";
@@ -927,14 +914,12 @@ jQuery(document).ready(function () {
 
 // Main flow starts here
 if (mode === "endless") {
-  //console.log("Endless mode active");
   progressDisplay.style.display = "none";
   updateColorBox(colors[currentColorIndex]); // Show the initial color
   nextQuestion(); // Start the quiz in endless mode
   updateOptions(generateOptions()); // Generate and show initial options
 } else if (mode === "ten-questions") {
   updateColorBox(colors[currentColorIndex]);
-  //nextQuestion();
   updateOptions(generateOptions());
 } else {
   // Invalid mode, redirect back to the main page
@@ -958,14 +943,13 @@ function closeSideBar() {
   sidebar.classList.toggle("active");
 }
 
+//Function to go to the previous question
 function goToNextQuestion() {
   if (currentQuestion < currentQuestionProgress) {
     currentQuestion++;
     const updatedColor =
       colorsByName[arrayOfCorrectAnswers[currentQuestion - 1]];
     updateColorBox(updatedColor);
-    // Call a function here to update the question and options based on the currentQuestion index
-    // For example: updateQuestion(currentQuestion);
     updateProgressDisplay();
   }
 }
@@ -977,8 +961,6 @@ function goToPreviousQuestion() {
     const updatedColor =
       colorsByName[arrayOfCorrectAnswers[currentQuestion - 1]];
     updateColorBox(updatedColor);
-    // Call a function here to update the question and options based on the currentQuestion index
-    // For example: updateQuestion(currentQuestion);
     updateProgressDisplay();
   }
 }
