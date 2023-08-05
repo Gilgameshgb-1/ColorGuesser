@@ -119,6 +119,10 @@ button:hover {
   justify-content: center;
 }
 
+.arrow-button:hover {
+  background-color: #666;
+}
+
 #prevButton {
   margin-right: 80px;
 }
@@ -161,7 +165,7 @@ button:hover {
 }
 
 .option-button:hover {
-  background-color: #0056b3;
+  background-color: #666;
 }
 
 /* Add this CSS to your styles.css file */
